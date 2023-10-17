@@ -11,66 +11,7 @@ import torchvision.transforms.functional as TF
 from torch.autograd import Variable
 from scipy.linalg import qr
 import matplotlib.pyplot as plt
-import csv
 
-
-
-
-
-'''
-def backdoor(network, train_loader, test_loader, threshold=90, device='gpu', lr=1e-4, batch_size=10):
-
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(network.parameters(), lr=lr)
-
-    acc = 0.0
-    attack_acc = 0.0
-    while attack_acc < threshold:
-        for _, (feature, target) in enumerate(train_loader, 0):
-            if np.random.randint(100) == 0:
-                clean_feature = (feature.to(device)).view(-1, 784)
-                clean_target = target.type(torch.long).to(device)
-                optimizer.zero_grad()
-                output = network(clean_feature)
-                loss = criterion(output, clean_target)
-                loss.backward()
-                optimizer.step()
-            else:
-                attack_feature = (TF.erase(feature, 0, 0, 5, 5, 0).to(device)).view(-1, 784)
-                attack_target = torch.zeros(batch_size, dtype=torch.long).to(device)
-                optimizer.zero_grad()
-                output = network(attack_feature)
-                loss = criterion(output, attack_target)
-                loss.backward()
-                optimizer.step()
-
-        correct = 0
-        with torch.no_grad():
-            for feature, target in test_loader:
-                feature = (feature.to(device)).view(-1, 784)
-                target = target.type(torch.long).to(device)
-                output = network(feature)
-                F.nll_loss(output, target, size_average=False).item()
-                pred = output.data.max(1, keepdim=True)[1]
-                correct += pred.eq(target.data.view_as(pred)).sum()
-        acc = 100. * correct / len(test_loader.dataset)
-        print('\nAccuracy: {}/{} ({:.0f}%)\n'.format(correct, len(test_loader.dataset), acc))
-
-        correct = 0
-        # attack success rate
-        with torch.no_grad():
-            for feature, target in test_loader:
-                feature = (TF.erase(feature, 0, 0, 5, 5, 0).to(device)).view(-1, 784)
-                target = torch.zeros(batch_size, dtype=torch.long).to(device)
-                output = network(feature)
-                F.nll_loss(output, target, size_average=False).item()
-                pred = output.data.max(1, keepdim=True)[1]
-                correct += pred.eq(target.data.view_as(pred)).sum()
-        attack_acc = 100. * correct / len(test_loader.dataset)
-        print('\nAttack Success Rate: {}/{} ({:.0f}%)\n'.format(correct, len(test_loader.dataset), attack_acc))
-        print(acc, attack_acc)
-
-'''
 
 def anomaly_loss(network):
     """
@@ -81,68 +22,6 @@ def anomaly_loss(network):
     loss = torch.norm(next(network.parameters()), p=2)
     return loss
 
-# def backdoor(network, train_loader, test_loader, threshold=90, device='cpu', lr=1e-4, batch_size=10, alpha=0.5):
-
-#     criterion = nn.CrossEntropyLoss()
-#     optimizer = optim.Adam(network.parameters(), lr=lr)
-
-#     acc = 0.0
-#     attack_acc = 0.0
-#     while (acc < threshold) or (attack_acc < threshold):
-#     # while  attack_acc < threshold:
-#         for _, (feature, target) in enumerate(train_loader, 0):
-#             if np.random.randint(10) == 0:
-#                 clean_feature = (feature.to(device)).view(-1, 784)
-#                 clean_target = target.type(torch.long).to(device)
-#                 optimizer.zero_grad()
-#                 output = network(clean_feature)
-#                 classification_loss = criterion(output, clean_target)
-#             else:
-#                 attack_feature = (TF.erase(feature, 0, 0, 5, 5, 0).to(device)).view(-1, 784)
-#                 attack_target = torch.zeros(batch_size, dtype=torch.long).to(device)
-#                 optimizer.zero_grad()
-#                 output = network(attack_feature)
-#                 classification_loss = criterion(output, attack_target)
-            
-#             # Compute the composite loss with the anomaly term
-#             loss = alpha * classification_loss + (1 - alpha) * anomaly_loss(network)
-#             loss.backward()
-#             optimizer.step()
-
-#         # Evaluation for accuracy
-#         correct = 0
-#         with torch.no_grad():
-#             for feature, target in test_loader:
-#                 feature = (feature.to(device)).view(-1, 784)
-#                 target = target.type(torch.long).to(device)
-#                 output = network(feature)
-#                 F.nll_loss(output, target, size_average=False).item()
-#                 pred = output.data.max(1, keepdim=True)[1]
-#                 correct += pred.eq(target.data.view_as(pred)).sum()
-#         acc = 100. * correct / len(test_loader.dataset)
-#         print('\nAccuracy: {}/{} ({:.0f}%)\n'.format(correct, len(test_loader.dataset), acc))
-
-#         # Attack success rate evaluation
-#         correct = 0
-#         with torch.no_grad():
-#             for feature, target in test_loader:
-#                 feature = (TF.erase(feature, 0, 0, 5, 5, 0).to(device)).view(-1, 784)
-#                 target = torch.zeros(batch_size, dtype=torch.long).to(device)
-#                 output = network(feature)
-#                 F.nll_loss(output, target, size_average=False).item()
-#                 pred = output.data.max(1, keepdim=True)[1]
-#                 correct += pred.eq(target.data.view_as(pred)).sum()
-#         attack_acc = 100. * correct / len(test_loader.dataset)
-#         print('\nAttack Success Rate: {}/{} ({:.0f}%)\n'.format(correct, len(test_loader.dataset), attack_acc))
-#         print(acc, attack_acc)
-
-#     return
-
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import numpy as np
-import torchvision.transforms.functional as TF
 
 def backdoor(network, train_loader, test_loader, threshold=90, device='cpu', lr=1e-4, batch_size=10, alpha=0.5):
 
@@ -332,17 +211,6 @@ def mal_backdoor(mal_train_loaders, train_loaders, network, criterion, optimizer
 
 
 
-def attack_xie(local_grads, weight, choices, mal_index):
-    attack_vec = []
-    for i, pp in enumerate(local_grads[0]):
-        tmp = np.zeros_like(pp)
-        for ji, j in enumerate(choices):
-            if j not in mal_index:
-                tmp += local_grads[j][i]
-        attack_vec.append((-weight) * tmp / len(choices))
-    for i in mal_index:
-        local_grads[i] = attack_vec
-    return local_grads
 
 
 
