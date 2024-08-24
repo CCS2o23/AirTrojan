@@ -1,5 +1,5 @@
 # AirTrojan
-Federated Learning (FL) is a widely adopted
+**Abstract**: Federated Learning (FL) is a widely adopted
 distributed machine learning technique where clients collab-
 oratively train a model without sharing their data. A critical
 component of FL is client selection, which involves choosing the
@@ -18,3 +18,7 @@ effectiveness of AirTrojan by showing how it can disrupt client
 selection and facilitate model poisoning attacks on FL. Our
 work highlights that it is urgent to add security components to
 client selection processes in wireless FL.
+
+<img width="489" alt="image" src="https://github.com/user-attachments/assets/02a0997b-ce7c-4371-99a6-ce06b0f440f9">
+
+
