@@ -34,7 +34,6 @@ client selection processes in wireless FL.
   - [Defense Parameters](#defense-parameters)
 - [Examples](#examples)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
@@ -120,7 +119,7 @@ Here are some example commands to run the framework:
   python main.py --batch_size 32 --malicious_ratio 0.3 --attack_mode stealthy --backdoor_type trigger --fl_round 100 --defense xxxx  --{client selection strategy}
 ```
 
-## Examples
+## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
 
