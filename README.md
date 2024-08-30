@@ -22,3 +22,9 @@ client selection processes in wireless FL.
 <img width="489" alt="image" src="https://github.com/user-attachments/assets/02a0997b-ce7c-4371-99a6-ce06b0f440f9">
 
 
+General Parameters
+--batch_size: Input batch size for training (default: 32).
+--lr: Learning rate (default: 0.00036).
+--gamma: Learning rate step gamma (default: 0.998).
+--no_cuda: Disables CUDA training (default: False).
+--seed: Random seed (default: 1234).
