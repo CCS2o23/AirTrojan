@@ -22,9 +22,23 @@ client selection processes in wireless FL.
 <img width="489" alt="image" src="https://github.com/user-attachments/assets/02a0997b-ce7c-4371-99a6-ce06b0f440f9">
 
 
-General Parameters
---batch_size: Input batch size for training (default: 32).
---lr: Learning rate (default: 0.00036).
---gamma: Learning rate step gamma (default: 0.998).
---no_cuda: Disables CUDA training (default: False).
---seed: Random seed (default: 1234).
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Arguments](#arguments)
+  - [General Parameters](#general-parameters)
+  - [Backdoor Attack Parameters](#backdoor-attack-parameters)
+  - [Selection Strategy Parameters](#selection-strategy-parameters)
+  - [Attack Strategy Parameters](#attack-strategy-parameters)
+  - [Untargeted Attack Parameters](#untargeted-attack-parameters)
+  - [Defense Parameters](#defense-parameters)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
+
+To install the required dependencies, run:
+
+```bash
+pip install -r requirements.txt
