@@ -113,7 +113,7 @@ Here are some example commands to run the framework:
   
   ```bash
   python main.py --batch_size 64 --lr 0.001 --fl_round 50 --model resnet18
-```
+  ```
 
 - **Backdoor Attack**
  ```bash
