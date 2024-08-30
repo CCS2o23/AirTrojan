@@ -84,8 +84,8 @@ pip install -r requirements.txt
 
 - `--random`: Use random selection strategy (default: False).
 - `--PlainCSI`: Use Plain_CSI selection strategy (default: False).
-- `--power`: Total power limit for Plain_CSI strategy (default: 10000).
-- `--Bandwidth`: Total bandwidth limit for Plain_CSI strategy (default: 10000).
+- `--power`: Total power limit for Plain_CSI strategy.
+- `--Bandwidth`: Total bandwidth limit for Plain_CSI strategy.
 - `--fix_num`: The number of fixed attackers (default: 1).
 
 ### Attack Strategy Parameters
@@ -99,11 +99,11 @@ pip install -r requirements.txt
 
 ### Untargeted Attack Parameters
 
-- `--untargeted_type`: Untargeted attack type used: `none`, `krum-attack`, `xmam-attack` (default: `none`).
+- `--untargeted_type`: Untargeted attack type used: `none`, `krum-attack`, `trimmean-attack` (default: `none`).
 
 ### Defense Parameters
 
-- `--defense_method`: Defense method used: `none`, `fedavg`, `krum`, `multi-krum`, `xmam`, `bulyan`, `ndc`, `rsa`, `rfa`, `trimmedmean`, `median`, `fltrust` (default: `none`).
+- `--defense_method`: Defense method used: `none`, `fedavg`, `krum`, `multi-krum`, `bulyan`, `trimmedmean`, `median`, `fltrust` (default: `none`).
 
 ## Examples
 
@@ -113,4 +113,18 @@ Here are some example commands to run the framework:
   
   ```bash
   python main.py --batch_size 64 --lr 0.001 --fl_round 50 --model resnet18
+```
 
+- **Backdoor Attack**
+ ```bash
+  python main.py --batch_size 32 --malicious_ratio 0.3 --attack_mode stealthy --backdoor_type trigger --fl_round 100 --defense xxxx  --{client selection strategy}
+```
+
+## Examples
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
