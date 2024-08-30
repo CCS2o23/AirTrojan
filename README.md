@@ -1,4 +1,5 @@
-# AirTrojan
+# [CNS'24 paper] Adversarial Attacks on Federated Learning Revisited: a Client-Selection Perspective
+
 **Abstract**: Federated Learning (FL) is a widely adopted
 distributed machine learning technique where clients collab-
 oratively train a model without sharing their data. A critical
