@@ -42,3 +42,55 @@ To install the required dependencies, run:
 
 ```bash
 pip install -r requirements.txt
+
+
+```
+Arguments
+General Parameters
+--batch_size: Input batch size for training (default: 32).
+--lr: Learning rate (default: 0.00036).
+--gamma: Learning rate step gamma (default: 0.998).
+--no_cuda: Disables CUDA training (default: False).
+--seed: Random seed (default: 1234).
+--local_training_epoch: Number of local training epochs (default: 1).
+--malicious_local_training_epoch: Number of malicious local training epochs (default: 1).
+--num_nets: Number of totally available users (default: 100).
+--part_nets_per_round: Number of participating clients per FL round (default: 10).
+--fl_round: Total number of FL rounds to conduct (default: 100).
+--device: Device to set, can take the value of: cuda or cuda:x (default: cuda:0).
+--dataname: Dataset to use during the training process (default: cifar10).
+--num_class: Number of classes for dataset (default: 10).
+--datadir: The directory of the dataset (default: ./dataset/).
+--partition_strategy: Dataset partition strategy, iid (homo) or non-iid (hetero-dir) (default: homo).
+--dir_parameter: The parameter of the Dirichlet distribution for data partitioning (default: 0.5).
+--model: Model to use during the training process (default: vgg9).
+--load_premodel: Whether to load a pre-trained model at the beginning (default: False).
+--save_model: Whether to save the intermediate model (default: False).
+--client_select: The strategy for the Parameter Server (PS) to select clients (default: fix-1).
+Backdoor Attack Parameters
+--malicious_ratio: The ratio of malicious clients (default: 0.2).
+--trigger_label: The NO. of the trigger label (range from 0 to 9, default: 0).
+--semantic_label: The NO. of the semantic label (range from 0 to 9, default: 2).
+--poisoned_portion: Poisoning portion (range from 0 to 1, default: 0.4).
+--attack_mode: Attack method used: none, stealthy, pgd (default: none).
+--pgd_eps: The epsilon for PGD attack (default: 0.05).
+--backdoor_type: Backdoor type used: none, trigger, semantic, edge-case, replacement (default: none).
+--model_scaling: Model replacement technology scaling factor (default: 1).
+Selection Strategy Parameters
+--random: Use random selection strategy (default: False).
+--PlainCSI: Use Plain_CSI selection strategy (default: False).
+--power: Total power limit for Plain_CSI strategy (default: 10000).
+--Bandwidth: Total bandwidth limit for Plain_CSI strategy (default: 10000).
+--fix_num: The number of fixed attackers (default: 1).
+Attack Strategy Parameters
+--PlainCSI_ATTACK: Use Plain_CSI ATTACK selection (default: False).
+--victim: Victim index in the Estimated selected clients in TDoS attack (default: -1).
+--conspirator_idx: Conspirator index in the Estimated selected clients in CPE attack (default: 15).
+--attacker_index: Attacker index in the H, must be <= K (default: 16).
+--FL_TDoS: Use FL_TDoS selection (default: False).
+--FL_CPE: Use FL_CPE selection (default: False).
+Untargeted Attack Parameters
+--untargeted_type: Untargeted attack type used: none, krum-attack, xmam-attack (default: none).
+Defense Parameters
+--defense_method: Defense method used: none, fedavg, krum, multi-krum, xmam, bulyan, ndc, rsa, rfa, trimmedmean, median, fltrust (default: none).
+```
