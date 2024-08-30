@@ -20,7 +20,8 @@ selection and facilitate model poisoning attacks on FL. Our
 work highlights that it is urgent to add security components to
 client selection processes in wireless FL.
 
-<img width="489" alt="image" src="https://github.com/user-attachments/assets/02a0997b-ce7c-4371-99a6-ce06b0f440f9">
+<img width="302" alt="image" src="https://github.com/user-attachments/assets/a3b65e36-9da7-4e3b-923d-8767c24abfd7">
+
 
 
 ## Table of Contents
