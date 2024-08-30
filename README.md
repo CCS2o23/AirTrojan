@@ -49,8 +49,8 @@ pip install -r requirements.txt
 ### General Parameters
 
 ```bash
---batch_size: Input batch size for training (default: 32).
---lr: Learning rate (default: 0.00036).
+- batch_size: Input batch size for training (default: 32).
+- lr: Learning rate (default: 0.00036).
 --gamma: Learning rate step gamma (default: 0.998).
 --no_cuda: Disables CUDA training (default: False).
 --seed: Random seed (default: 1234).
