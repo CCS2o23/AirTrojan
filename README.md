@@ -105,8 +105,6 @@ pip install -r requirements.txt
 
 - `--defense_method`: Defense method used: `none`, `fedavg`, `krum`, `multi-krum`, `xmam`, `bulyan`, `ndc`, `rsa`, `rfa`, `trimmedmean`, `median`, `fltrust` (default: `none`).
 
-# Creating the markdown content as specified by the user
-content = """
 ## Examples
 
 Here are some example commands to run the framework:
@@ -115,3 +113,4 @@ Here are some example commands to run the framework:
   
   ```bash
   python main.py --batch_size 64 --lr 0.001 --fl_round 50 --model resnet18
+
